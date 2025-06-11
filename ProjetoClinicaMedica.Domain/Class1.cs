@@ -1,4 +1,6 @@
-﻿namespace ProjetoClinicaMedica.Domain
+﻿using Microsoft.Win32;
+
+namespace ProjetoClinicaMedica.Domain
 {
     public class Class1
     {
@@ -20,5 +22,15 @@
         public DateTime DataNascimento { get; set; }
         public string HistoricoMedico { get; set; }
         public string ContatoEmergencia { get; set; }
+    }
+
+    public class Prontuario
+    {
+        public int Id { get; set; }
+        public DateTime DataConsuta { get; set; }
+        public DateTime HorarioConsuta { get; set; }
+        public string Medico { get; set; }
+        public string Exames { get; set; }
+        public string Diagnósticos { get; set; }
     }
 }
