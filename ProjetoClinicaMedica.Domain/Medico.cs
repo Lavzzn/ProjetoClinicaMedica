@@ -8,7 +8,6 @@
         public string Numero { get; set; } = string.Empty;
         public string NomeCompleto { get; set; } = string.Empty;
         public string AreaAtuacao { get; set; } = string.Empty;
-        public string PasswordHash { get; set; } = string.Empty;
 
     }
 }
