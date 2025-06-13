@@ -28,8 +28,8 @@ namespace ProjetoGestaoServicos.Api.Controllers
             {
                 Id = a.Id,
                 Exames = a.Exames,
-                Diagnosticos = a.Diagnosticos
-
+                Diagnosticos = a.Diagnosticos,
+                PacienteNome = a.PacienteNome
             }).ToList();
 
             return lista;
@@ -48,7 +48,8 @@ namespace ProjetoGestaoServicos.Api.Controllers
             {
                 Id = prontuario.Id,
                 Exames = prontuario.Exames,
-                Diagnosticos = prontuario.Diagnosticos
+                Diagnosticos = prontuario.Diagnosticos,
+                PacienteNome = prontuario.PacienteNome
             };
 
             return prontuarioDto;
@@ -58,7 +59,7 @@ namespace ProjetoGestaoServicos.Api.Controllers
         public async Task<ProntuarioDto> CriarProntuario(CreateProntuario dto)
         {
             var novoProntuario = new Prontuario
-            {
+            {                
                 Exames = dto.Exames,
                 Diagnosticos = dto.Diagnosticos
             };
@@ -71,7 +72,8 @@ namespace ProjetoGestaoServicos.Api.Controllers
             {
                 Id = novoProntuario.Id,
                 Exames = novoProntuario.Exames,
-                Diagnosticos = novoProntuario.Diagnosticos
+                Diagnosticos = novoProntuario.Diagnosticos,
+                PacienteNome = novoProntuario.PacienteNome
             };
         }
 
