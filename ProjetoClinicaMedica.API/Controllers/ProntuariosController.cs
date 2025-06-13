@@ -61,7 +61,8 @@ namespace ProjetoGestaoServicos.Api.Controllers
             var novoProntuario = new Prontuario
             {                
                 Exames = dto.Exames,
-                Diagnosticos = dto.Diagnosticos
+                Diagnosticos = dto.Diagnosticos,
+                PacienteNome = dto.PacienteNome
             };
 
             await _context.Prontuarios.AddAsync(novoProntuario);
@@ -87,6 +88,7 @@ namespace ProjetoGestaoServicos.Api.Controllers
                 return NotFound();
             }
 
+            prontuario.PacienteNome = dto.PacienteNome;
             prontuario.Exames = dto.Exames;
             prontuario.Diagnosticos = dto.Diagnosticos;
 
