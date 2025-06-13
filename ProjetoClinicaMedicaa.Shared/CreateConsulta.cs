@@ -11,9 +11,6 @@ namespace ProjetoClinicaMedicaa.Shared
     {
 
         [Required]
-        public DateTime Data { get; set; }
-
-        [Required]
         public DateTime DataHora { get; set; }
 
         [Required]
