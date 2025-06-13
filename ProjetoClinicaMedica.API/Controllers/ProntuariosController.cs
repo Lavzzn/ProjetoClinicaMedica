@@ -29,7 +29,7 @@ namespace ProjetoGestaoServicos.Api.Controllers
                 Id = a.Id,
                 Exames = a.Exames,
                 Diagnosticos = a.Diagnosticos,
-                PacienteNome = a.PacienteNome
+                PacienteId  = a.PacienteId
             }).ToList();
 
             return lista;
@@ -49,7 +49,7 @@ namespace ProjetoGestaoServicos.Api.Controllers
                 Id = prontuario.Id,
                 Exames = prontuario.Exames,
                 Diagnosticos = prontuario.Diagnosticos,
-                PacienteNome = prontuario.PacienteNome
+                PacienteId = prontuario.PacienteId
             };
 
             return prontuarioDto;
@@ -62,7 +62,7 @@ namespace ProjetoGestaoServicos.Api.Controllers
             {                
                 Exames = dto.Exames,
                 Diagnosticos = dto.Diagnosticos,
-                PacienteNome = dto.PacienteNome
+                PacienteId = dto.PacienteId
             };
 
             await _context.Prontuarios.AddAsync(novoProntuario);
@@ -73,8 +73,7 @@ namespace ProjetoGestaoServicos.Api.Controllers
             {
                 Id = novoProntuario.Id,
                 Exames = novoProntuario.Exames,
-                Diagnosticos = novoProntuario.Diagnosticos,
-                PacienteNome = novoProntuario.PacienteNome
+                Diagnosticos = novoProntuario.Diagnosticos
             };
         }
 
@@ -88,7 +87,7 @@ namespace ProjetoGestaoServicos.Api.Controllers
                 return NotFound();
             }
 
-            prontuario.PacienteNome = dto.PacienteNome;
+            prontuario.PacienteId = dto.PacienteId;
             prontuario.Exames = dto.Exames;
             prontuario.Diagnosticos = dto.Diagnosticos;
 

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetoClinicaMedica.API.Data;
 
@@ -11,9 +12,11 @@ using ProjetoClinicaMedica.API.Data;
 namespace ProjetoClinicaMedica.API.Migrations
 {
     [DbContext(typeof(ClinicaContext))]
-    partial class ClinicaContextModelSnapshot : ModelSnapshot
+    [Migration("20250613170623_AltereiProntuario")]
+    partial class AltereiProntuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

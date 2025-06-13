@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetoClinicaMedica.API.Data;
 
@@ -11,9 +12,11 @@ using ProjetoClinicaMedica.API.Data;
 namespace ProjetoClinicaMedica.API.Migrations
 {
     [DbContext(typeof(ClinicaContext))]
-    partial class ClinicaContextModelSnapshot : ModelSnapshot
+    [Migration("20250613142234_AddColunaDiagnostico")]
+    partial class AddColunaDiagnostico
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -141,12 +144,16 @@ namespace ProjetoClinicaMedica.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("PacienteId")
+                    b.Property<string>("PacienteNome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("Pacienteid")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PacienteId");
+                    b.HasIndex("Pacienteid");
 
                     b.ToTable("Prontuarios");
                 });
@@ -197,7 +204,7 @@ namespace ProjetoClinicaMedica.API.Migrations
                 {
                     b.HasOne("ProjetoClinicaMedica.Domain.Paciente", "Paciente")
                         .WithMany()
-                        .HasForeignKey("PacienteId")
+                        .HasForeignKey("Pacienteid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

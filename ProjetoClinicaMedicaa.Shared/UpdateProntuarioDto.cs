@@ -7,6 +7,6 @@
         public DateTime HorarioConsuta { get; set; }       
         public string Exames { get; set; }
         public string Diagnosticos { get; set; }
-        public string PacienteNome { get; set; }
+        public Guid PacienteId { get; set; }
     }
 }
