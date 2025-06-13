@@ -12,5 +12,7 @@ namespace ProjetoClinicaMedicaa.Shared
         public DateTime Data { get; set; }
         public DateTime DataHora { get; set; }
         public string Valor { get; set; } = string.Empty;
+        public int MedicoId { get; set; }
+        public int PacienteId { get; set; }
     }
 }

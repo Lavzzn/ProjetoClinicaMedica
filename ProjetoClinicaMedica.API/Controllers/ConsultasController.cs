@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ProjetoClinicaMedica.API.Data;
 using ProjetoClinicaMedica.Domain;
 using ProjetoClinicaMedicaa.Shared;
@@ -9,32 +10,25 @@ namespace ProjetoClinicaMedica.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class ConsultasController : ControllerBase
-    {
-
-
-namespace ProjetoGestaoServicos.Api.Controllers
-    {
-        [Route("api/[controller]")]
-        [ApiController]
-        public class ProntuarioController : ControllerBase
         {
             private readonly ClinicaContext _context;
 
-            public ProntuarioController(ClinicaContext context)
+            public ConsultasController (ClinicaContext context)
             {
                 _context = context;
             }
 
             [HttpGet]
-            public async Task<ActionResult<List<ProntuarioDto>>> GetProntuario()
+            public async Task<ActionResult<List<ConsultaDto>>> GetConsulta()
             {
-                var prontuarios = await _context.Prontuarios.ToListAsync();
+                var consultas = await _context.Consultas.ToListAsync();
 
-                var lista = prontuarios.Select(a => new ProntuarioDto
+                var lista = consultas.Select(a => new ConsultaDto
                 {
                     Id = a.Id,
-                    Exames = a.Exames,
-                    Diagnosticos = a.Diagnosticos,
+                    DataHora = a.DataHora,
+                    Valor = a.Valor,
+                    MedicoId = a.MedicoId,
                     PacienteId = a.PacienteId
                 }).ToList();
 
@@ -42,60 +36,65 @@ namespace ProjetoGestaoServicos.Api.Controllers
             }
 
             [HttpGet("{id}")]
-            public async Task<ActionResult<ProntuarioDto>> GetProntuarioById(int id)
+            public async Task<ActionResult<ConsultaDto>> GetConsultaById(int id)
             {
-                var prontuario = await _context.Prontuarios.FindAsync(id);
-                if (prontuario == null)
+                var consulta = await _context.Consultas.FindAsync(id);
+                if (consulta == null)
                 {
                     return NotFound();
                 }
 
-                var prontuarioDto = new ProntuarioDto
+                var consultaDto = new ConsultaDto
                 {
-                    Id = prontuario.Id,
-                    Exames = prontuario.Exames,
-                    Diagnosticos = prontuario.Diagnosticos,
-                    PacienteId = prontuario.PacienteId
+                    Id = consulta.Id,
+                    DataHora = consulta.DataHora,
+                    Valor = consulta.Valor,
+                    MedicoId = consulta.MedicoId,
+                    PacienteId = consulta.PacienteId
                 };
 
-                return prontuarioDto;
+                return consultaDto;
             }
 
             [HttpPost]
-            public async Task<ProntuarioDto> CriarProntuario(CreateProntuario dto)
+            public async Task<ConsultaDto> CriarConsulta(CreateConsulta dto)
             {
-                var novoProntuario = new Prontuario
+                var novaConsulta = new Consulta
                 {
-                    Exames = dto.Exames,
-                    Diagnosticos = dto.Diagnosticos,
+          
+                    Valor = dto.Valor,
+                    DataHora = dto.DataHora,
+                    MedicoId = dto.MedicoId,
                     PacienteId = dto.PacienteId
                 };
 
-                await _context.Prontuarios.AddAsync(novoProntuario);
+                await _context.Consultas.AddAsync(novaConsulta);
 
                 await _context.SaveChangesAsync();
 
-                return new ProntuarioDto
+                return new ConsultaDto
                 {
-                    Id = novoProntuario.Id,
-                    Exames = novoProntuario.Exames,
-                    Diagnosticos = novoProntuario.Diagnosticos
+                    Id = novaConsulta.Id,
+                    DataHora = novaConsulta.DataHora,
+                    Valor = novaConsulta.Valor
                 };
             }
 
             [HttpPut("{id}")]
-            public async Task<ActionResult<bool>> UpdateProntuarioDto(int id, UpdateProntuarioDto dto)
+            public async Task<ActionResult<bool>> UpdateConsultaDto(int id, UpdateConsulta dto)
             {
-                var prontuario = await _context.Prontuarios.FindAsync(id);
+                var consulta = await _context.Consultas.FindAsync(id);
 
-                if (prontuario == null)
+                if (consulta == null)
                 {
                     return NotFound();
                 }
 
-                prontuario.PacienteId = dto.PacienteId;
-                prontuario.Exames = dto.Exames;
-                prontuario.Diagnosticos = dto.Diagnosticos;
+                consulta.PacienteId = dto.PacienteId;
+                consulta.MedicoId = dto.MedicoId;
+                consulta.DataHora = dto.DataHora;
+                consulta.Valor = dto.Valor;
+                
 
                 await _context.SaveChangesAsync();
 
@@ -103,21 +102,20 @@ namespace ProjetoGestaoServicos.Api.Controllers
             }
 
             [HttpDelete("{id}")]
-            public async Task<IActionResult> DeleteCliente(int id)
+            public async Task<IActionResult> DeletePaciente(int id)
             {
-                var prontuario = await _context.Prontuarios.FindAsync(id);
+                var consulta = await _context.Consultas.FindAsync(id);
 
-                if (prontuario == null)
+                if (consulta == null)
                 {
                     return NotFound();
                 }
 
-                _context.Prontuarios.Remove(prontuario);
+                _context.Consultas.Remove(consulta);
                 await _context.SaveChangesAsync();
 
                 return NoContent();
             }
         }
     }
-}
-}
+

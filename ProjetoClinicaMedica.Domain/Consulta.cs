@@ -11,5 +11,6 @@
         public Medico? Medico { get; set; }
         public int PacienteId { get; set; }
         public Paciente? Paciente { get; set; }
+        public string Diagnosticos { get; set; }
     }
 }

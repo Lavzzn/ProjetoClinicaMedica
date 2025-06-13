@@ -8,9 +8,10 @@ namespace ProjetoClinicaMedicaa.Shared
 {
     public class ProntuarioDto
     {
-        public int Id { get; set; }        
+        public int Id { get; set; } 
+        public string Medico { get; set; }
         public string Exames { get; set; }
         public string Diagnosticos { get; set; }
-        public Guid PacienteId { get; set; }
+        public int PacienteNome { get; set; }
     }
 }
