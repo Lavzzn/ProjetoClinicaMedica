@@ -11,6 +11,7 @@ namespace ProjetoClinicaMedicaa.Shared
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Nome { get; set; } = string.Empty;
         public DateTime DataNascimento { get; set; } 
+        public string HistoricoMedico { get; set; }
         public string ContatoEmergencia { get; set; } = string.Empty;
     }
 }
