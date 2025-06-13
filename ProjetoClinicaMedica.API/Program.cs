@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<ProjetoContext>(opt => opt.UseSqlServer(connectionString));
+builder.Services.AddDbContext<ClinicaContext>(opt => opt.UseSqlServer(connectionString));
 builder.Services.AddScoped<IPasswordHasher<Usuario>, PasswordHasher<Usuario>>();
 
 // Adicionar suporte a CORS
