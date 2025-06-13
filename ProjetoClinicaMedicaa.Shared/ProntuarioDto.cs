@@ -11,6 +11,7 @@ namespace ProjetoClinicaMedicaa.Shared
         public int Id { get; set; } 
         public string Medico { get; set; }
         public string Exames { get; set; }
-        public string Diagnósticos { get; set; }
+        public string Diagnosticos { get; set; }
+        public int Paciente { get; set; }
     }
 }

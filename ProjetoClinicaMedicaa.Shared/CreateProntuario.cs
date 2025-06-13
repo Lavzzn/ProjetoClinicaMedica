@@ -7,6 +7,8 @@ namespace ProjetoClinicaMedicaa.Shared
         [Required]
         public string MedicoNome { get; set; }
         [Required]
+        public int Paciente { get; set; }
+        [Required]
         public string Exames { get; set; }
         public string Diagnosticos { get; set; }
     }
