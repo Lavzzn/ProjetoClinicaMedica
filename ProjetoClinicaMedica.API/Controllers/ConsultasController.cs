@@ -50,7 +50,8 @@ namespace ProjetoClinicaMedica.API.Controllers
                     DataHora = consulta.DataHora,
                     Valor = consulta.Valor,
                     MedicoId = consulta.MedicoId,
-                    PacienteId = consulta.PacienteId
+                    PacienteId = consulta.PacienteId,
+                    Convenio = consulta.Convenio,
                 };
 
                 return consultaDto;
@@ -65,7 +66,8 @@ namespace ProjetoClinicaMedica.API.Controllers
                     Valor = dto.Valor,
                     DataHora = dto.DataHora,
                     MedicoId = dto.MedicoId,
-                    PacienteId = dto.PacienteId
+                    PacienteId = dto.PacienteId,
+                    Convenio = dto.Convenio,
                 };
 
                 await _context.Consultas.AddAsync(novaConsulta);
@@ -76,7 +78,11 @@ namespace ProjetoClinicaMedica.API.Controllers
                 {
                     Id = novaConsulta.Id,
                     DataHora = novaConsulta.DataHora,
-                    Valor = novaConsulta.Valor
+                    Valor = novaConsulta.Valor,
+                    MedicoId = novaConsulta.MedicoId,
+                    PacienteId = novaConsulta.PacienteId,
+                    Convenio = novaConsulta.Convenio,
+
                 };
             }
 
@@ -94,7 +100,8 @@ namespace ProjetoClinicaMedica.API.Controllers
                 consulta.MedicoId = dto.MedicoId;
                 consulta.DataHora = dto.DataHora;
                 consulta.Valor = dto.Valor;
-                
+                consulta.Id = dto.Id;
+                consulta.Convenio = dto.Convenio;
 
                 await _context.SaveChangesAsync();
 

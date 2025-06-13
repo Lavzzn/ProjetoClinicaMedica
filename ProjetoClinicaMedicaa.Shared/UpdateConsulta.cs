@@ -14,5 +14,6 @@ namespace ProjetoClinicaMedicaa.Shared
         public string Valor { get; set; } = string.Empty;
         public int MedicoId { get; set; }
         public int PacienteId { get; set; }
+        public string? Convenio { get; set; }
     }
 }
