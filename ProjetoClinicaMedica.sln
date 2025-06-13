@@ -11,7 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{B9D73FD4-C5A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{C5212298-2675-4A78-8252-C1C7BC8F626C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoClinicaMedica.Domain", "ProjetoClinicaMedica.Domain\ProjetoClinicaMedica.Domain.csproj", "{3A541DFF-5EC0-444B-B112-9EFBEABCEDE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoClinicaMedica.Domain", "ProjetoClinicaMedica.Domain\ProjetoClinicaMedica.Domain.csproj", "{3A541DFF-5EC0-444B-B112-9EFBEABCEDE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoClinicaMedicaa.Shared", "ProjetoClinicaMedicaa.Shared\ProjetoClinicaMedicaa.Shared.csproj", "{53D0B153-EB90-42D0-B6F4-75EF3E2F6ED3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,12 +25,17 @@ Global
 		{3A541DFF-5EC0-444B-B112-9EFBEABCEDE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A541DFF-5EC0-444B-B112-9EFBEABCEDE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A541DFF-5EC0-444B-B112-9EFBEABCEDE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53D0B153-EB90-42D0-B6F4-75EF3E2F6ED3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53D0B153-EB90-42D0-B6F4-75EF3E2F6ED3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53D0B153-EB90-42D0-B6F4-75EF3E2F6ED3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53D0B153-EB90-42D0-B6F4-75EF3E2F6ED3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3A541DFF-5EC0-444B-B112-9EFBEABCEDE9} = {3E02C72E-9001-4C94-B054-0E5E64508D2D}
+		{53D0B153-EB90-42D0-B6F4-75EF3E2F6ED3} = {9A847CDA-5E1C-433A-9E74-3CE1AB281693}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D62FDA88-1BE4-4151-9ED7-4C4CCEDD826C}
