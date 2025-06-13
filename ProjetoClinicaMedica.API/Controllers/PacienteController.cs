@@ -64,6 +64,7 @@ namespace ProjetoClinicaMedica.API.Controllers
                 Email = dto.Email,
                 DataNascimento = dto.DataNascimento,
                 ContatoEmergencia= dto.ContatoEmergencia,
+                HistoricoMedico = dto.HistoricoMedico
             };
 
             await _context.Pacientes.AddAsync(novoPaciente);
@@ -76,6 +77,7 @@ namespace ProjetoClinicaMedica.API.Controllers
                 Nome = novoPaciente.Nome,
                 DataNascimento = novoPaciente.DataNascimento,
                 ContatoEmergencia = novoPaciente.ContatoEmergencia,
+                HistoricoMedico = dto.HistoricoMedico
             };
         }
 
