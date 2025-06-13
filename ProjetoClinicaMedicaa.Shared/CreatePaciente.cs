@@ -13,7 +13,10 @@ namespace ProjetoClinicaMedicaa.Shared
         public string Nome { get; set; }
         [Required]
         public DateTime DataNascimento { get; set; }
-
+        [Required]
+        public string Numero { get; set; } = string.Empty;
+        [Required]
+        public string Email { get; set; } = string.Empty;
         public string HistoricoMedico { get; set; }
         [Required]
         public string ContatoEmergencia { get; set; }
