@@ -1,8 +1,10 @@
-﻿namespace ProjetoClinicaMedica.Domain
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ProjetoClinicaMedicaa.Shared
 {
-    public class Prontuario
+    public class CreateProntuario
     {
-        public int Id { get; set; }
+        [Required]
         public string Medico { get; set; }
         public string Exames { get; set; }
         public string Diagnósticos { get; set; }
