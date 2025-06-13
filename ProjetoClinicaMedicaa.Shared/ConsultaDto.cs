@@ -15,5 +15,6 @@ namespace ProjetoClinicaMedicaa.Shared
         public int MedicoId { get; set; }
         public int PacienteId { get; set; }
         public string? Convenio { get; set; }
+        public string Tipo { get; set; }
     }
 }
