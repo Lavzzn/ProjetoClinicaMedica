@@ -72,7 +72,7 @@ namespace ProjetoClinicaMedica.API.Controllers
                 {
                     Id = novoMedico.Id,
                     NomeCompleto = novoMedico.NomeCompleto,
-                   AreaAtuacao = novoMedico.Numero
+                   AreaAtuacao = novoMedico.AreaAtuacao
                 };
             }
 
