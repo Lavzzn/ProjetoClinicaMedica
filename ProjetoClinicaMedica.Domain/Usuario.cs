@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjetoClinicaMedica.Domain
 {
-    internal class Usuario
+    public class Usuario
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Nome { get; set; } = string.Empty;
