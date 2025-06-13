@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-
-namespace ProjetoClinicaMedicaa.Shared
+﻿namespace ProjetoClinicaMedicaa.Shared
 {
     public class Class1
     {
@@ -12,6 +10,5 @@ namespace ProjetoClinicaMedicaa.Shared
         public string Nome { get; set; }
         public string AreaAtuacao { get; set; }
     }
-    
 
 }
