@@ -8,9 +8,9 @@
         public string Valor { get; set; }
         public bool IsCovenio { get; set; }
         public string? Convenio { get; set; }
-        public int MedicoId { get; set; }
+        public Guid MedicoId { get; set; }
         public Medico? Medico { get; set; }
-        public int PacienteId { get; set; }
+        public Guid PacienteId { get; set; }
         public Paciente? Paciente { get; set; }
         public string Diagnosticos { get; set; }
     }

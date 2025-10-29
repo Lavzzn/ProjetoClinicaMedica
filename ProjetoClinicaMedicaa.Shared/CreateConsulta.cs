@@ -15,17 +15,19 @@ namespace ProjetoClinicaMedicaa.Shared
 
         [Required]
         public string Valor { get; set; }
+        public bool IsCovenio { get; set; }
 
         [Required]
-        public int MedicoId { get; set; }
+        public Guid MedicoId { get; set; }
 
         [Required]
-        public int PacienteId { get; set; }
+        public Guid PacienteId { get; set; }
 
-        [Required]
         public string? Convenio { get; set; }
 
         [Required]
         public string Tipo { get; set; }
+
+        public string Diagnosticos { get; set; }
     }
 }

@@ -43,16 +43,10 @@ namespace ProjetoClinicaMedica.API.Migrations
                     b.Property<bool>("IsCovenio")
                         .HasColumnType("bit");
 
-                    b.Property<int>("MedicoId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("MedicoId1")
+                    b.Property<Guid>("MedicoId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("PacienteId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("PacienteId1")
+                    b.Property<Guid>("PacienteId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Tipo")
@@ -65,9 +59,9 @@ namespace ProjetoClinicaMedica.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MedicoId1");
+                    b.HasIndex("MedicoId");
 
-                    b.HasIndex("PacienteId1");
+                    b.HasIndex("PacienteId");
 
                     b.ToTable("Consultas");
                 });
@@ -190,11 +184,15 @@ namespace ProjetoClinicaMedica.API.Migrations
                 {
                     b.HasOne("ProjetoClinicaMedica.Domain.Medico", "Medico")
                         .WithMany()
-                        .HasForeignKey("MedicoId1");
+                        .HasForeignKey("MedicoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("ProjetoClinicaMedica.Domain.Paciente", "Paciente")
                         .WithMany()
-                        .HasForeignKey("PacienteId1");
+                        .HasForeignKey("PacienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Medico");
 

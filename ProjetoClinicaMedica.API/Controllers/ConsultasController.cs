@@ -29,7 +29,9 @@ namespace ProjetoClinicaMedica.API.Controllers
                     DataHora = a.DataHora,
                     Valor = a.Valor,
                     MedicoId = a.MedicoId,
-                    PacienteId = a.PacienteId
+                    PacienteId = a.PacienteId,
+                    Tipo = a.Tipo
+
                 }).ToList();
 
                 return lista;
@@ -49,9 +51,11 @@ namespace ProjetoClinicaMedica.API.Controllers
                     Id = consulta.Id,
                     DataHora = consulta.DataHora,
                     Valor = consulta.Valor,
+                    Tipo = consulta.Tipo,
                     MedicoId = consulta.MedicoId,
                     PacienteId = consulta.PacienteId,
                     Convenio = consulta.Convenio,
+                   
                 };
 
                 return consultaDto;
@@ -68,6 +72,8 @@ namespace ProjetoClinicaMedica.API.Controllers
                     MedicoId = dto.MedicoId,
                     PacienteId = dto.PacienteId,
                     Convenio = dto.Convenio,
+                    Tipo = dto.Tipo,
+                    Diagnosticos = dto.Diagnosticos,
                 };
 
                 await _context.Consultas.AddAsync(novaConsulta);
@@ -82,6 +88,7 @@ namespace ProjetoClinicaMedica.API.Controllers
                     MedicoId = novaConsulta.MedicoId,
                     PacienteId = novaConsulta.PacienteId,
                     Convenio = novaConsulta.Convenio,
+                    Tipo = novaConsulta.Tipo
 
                 };
             }
@@ -96,11 +103,11 @@ namespace ProjetoClinicaMedica.API.Controllers
                     return NotFound();
                 }
 
-                consulta.PacienteId = dto.PacienteId;
+                consulta.Id = dto.Id;
                 consulta.MedicoId = dto.MedicoId;
+                consulta.PacienteId = dto.PacienteId;
                 consulta.DataHora = dto.DataHora;
                 consulta.Valor = dto.Valor;
-                consulta.Id = dto.Id;
                 consulta.Convenio = dto.Convenio;
 
                 await _context.SaveChangesAsync();

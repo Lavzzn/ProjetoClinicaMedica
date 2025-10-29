@@ -12,8 +12,8 @@ using ProjetoClinicaMedica.API.Data;
 namespace ProjetoClinicaMedica.API.Migrations
 {
     [DbContext(typeof(ClinicaContext))]
-    [Migration("20250613123946_init")]
-    partial class init
+    [Migration("20250613193835_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,20 +39,22 @@ namespace ProjetoClinicaMedica.API.Migrations
                     b.Property<DateTime>("DataHora")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Diagnosticos")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsCovenio")
                         .HasColumnType("bit");
 
-                    b.Property<int>("MedicoId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("MedicoId1")
+                    b.Property<Guid>("MedicoId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("PacienteId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("PacienteId1")
+                    b.Property<Guid>("PacienteId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Valor")
                         .IsRequired()
@@ -60,9 +62,9 @@ namespace ProjetoClinicaMedica.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MedicoId1");
+                    b.HasIndex("MedicoId");
 
-                    b.HasIndex("PacienteId1");
+                    b.HasIndex("PacienteId");
 
                     b.ToTable("Consultas");
                 });
@@ -136,7 +138,7 @@ namespace ProjetoClinicaMedica.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Diagnósticos")
+                    b.Property<string>("Diagnosticos")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -144,11 +146,12 @@ namespace ProjetoClinicaMedica.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Medico")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("PacienteId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PacienteId");
 
                     b.ToTable("Prontuarios");
                 });
@@ -184,13 +187,28 @@ namespace ProjetoClinicaMedica.API.Migrations
                 {
                     b.HasOne("ProjetoClinicaMedica.Domain.Medico", "Medico")
                         .WithMany()
-                        .HasForeignKey("MedicoId1");
+                        .HasForeignKey("MedicoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("ProjetoClinicaMedica.Domain.Paciente", "Paciente")
                         .WithMany()
-                        .HasForeignKey("PacienteId1");
+                        .HasForeignKey("PacienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Medico");
+
+                    b.Navigation("Paciente");
+                });
+
+            modelBuilder.Entity("ProjetoClinicaMedica.Domain.Prontuario", b =>
+                {
+                    b.HasOne("ProjetoClinicaMedica.Domain.Paciente", "Paciente")
+                        .WithMany()
+                        .HasForeignKey("PacienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Paciente");
                 });

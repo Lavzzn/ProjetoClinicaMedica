@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ProjetoClinicaMedica.API.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -44,21 +44,6 @@ namespace ProjetoClinicaMedica.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Prontuarios",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Medico = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Exames = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Diagnósticos = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Prontuarios", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Usuarios",
                 columns: table => new
                 {
@@ -80,38 +65,66 @@ namespace ProjetoClinicaMedica.API.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DataHora = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Tipo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Valor = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsCovenio = table.Column<bool>(type: "bit", nullable: false),
                     Convenio = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MedicoId = table.Column<int>(type: "int", nullable: false),
-                    MedicoId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    PacienteId = table.Column<int>(type: "int", nullable: false),
-                    PacienteId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    MedicoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PacienteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Diagnosticos = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Consultas", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Consultas_Medicos_MedicoId1",
-                        column: x => x.MedicoId1,
+                        name: "FK_Consultas_Medicos_MedicoId",
+                        column: x => x.MedicoId,
                         principalTable: "Medicos",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Consultas_Pacientes_PacienteId1",
-                        column: x => x.PacienteId1,
+                        name: "FK_Consultas_Pacientes_PacienteId",
+                        column: x => x.PacienteId,
                         principalTable: "Pacientes",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Prontuarios",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Exames = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Diagnosticos = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PacienteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Prontuarios", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Prontuarios_Pacientes_PacienteId",
+                        column: x => x.PacienteId,
+                        principalTable: "Pacientes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Consultas_MedicoId1",
+                name: "IX_Consultas_MedicoId",
                 table: "Consultas",
-                column: "MedicoId1");
+                column: "MedicoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Consultas_PacienteId1",
+                name: "IX_Consultas_PacienteId",
                 table: "Consultas",
-                column: "PacienteId1");
+                column: "PacienteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Prontuarios_PacienteId",
+                table: "Prontuarios",
+                column: "PacienteId");
         }
 
         /// <inheritdoc />
